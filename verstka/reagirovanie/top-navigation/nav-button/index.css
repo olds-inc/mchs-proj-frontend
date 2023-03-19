@@ -1,0 +1,21 @@
+.nav-button {
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: transparent;
+  text-decoration: none;
+}
+.nav-button_icon {
+  color: #F2A45F;
+}
+.nav-button_text {
+  color: #FFFFFF;
+}
+.nav-button:active, .nav-button:hover, .nav-button__active {
+  background-color: #4C9EED;
+}
+.nav-button:active .nav-button_icon, .nav-button:hover .nav-button_icon, .nav-button__active .nav-button_icon {
+  color: #14142B;
+}
+.nav-button:active .nav-button_text, .nav-button:hover .nav-button_text, .nav-button__active .nav-button_text {
+  color: #14142B;
+}

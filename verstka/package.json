@@ -7,9 +7,12 @@
     "bootstrap-icons": "^1.10.3"
   },
   "scripts": {
-    "dev-server": "live-server"
+    "dev-server": "live-server",
+    "watch-sass": "sass --watch reagirovanie --no-source-map",
+    "start": "npm run watch-sass & npm run dev-server"
   },
   "devDependencies": {
-    "live-server": "^1.2.2"
+    "live-server": "^1.2.2",
+    "sass": "^1.59.3"
   }
 }

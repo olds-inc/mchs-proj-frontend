@@ -7,487 +7,428 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <title>Реагирование</title>
-    <style>
-        body {
-            background-color: #101122;
-        }
-
-        .nav-btn {
-            color: #FFFFFF;
-        }
-
-        .nav-btn .bi {
-            color: #F2A45F;
-        }
-
-        .nav-btn:hover {
-            color: #14142B;
-            background-color: #4C9EED;
-        }
-
-        .nav-btn:hover .bi {
-            color: #14142B;
-        }
-
-        .nav-btn__active {
-            color: #14142B;
-            background-color: #4C9EED;
-        }
-
-        .nav-btn__active .bi {
-            color: #14142B;
-        }
-
-        .nav-btn__active:hover {
-            color: #14142B;
-            background-color: #4C9EED;
-        }
-
-        .fixed-header-table {
-            height: 700px;
-            overflow-y: auto;
-        }
-
-        .fixed-header-table::-webkit-scrollbar {
-            border-radius: 10px;
-            width: 10px;
-        }
-
-        .fixed-header-table::-webkit-scrollbar-track {
-            background-color: #24263A;
-            border-radius: 10px;
-        }
-
-        .fixed-header-table::-webkit-scrollbar-thumb {
-            background-color: #C09A6C;
-            border-radius: 10px;
-        }
-
-        .fixed-header-table thead {
-            position: sticky;
-            top: 0;
-            background-color: #24263A;
-        }
-
-        .add-btn {
-            position: absolute;
-            bottom: 50px;
-            right: 70px;
-            width: 100px;
-            height: 100px;
-            text-align: center;
-            cursor: pointer;
-        }
-    </style>
+    <link href="index.css" rel="stylesheet">
+    <title>reagirovanie</title>
 </head>
 
-<body <div class="container-fluid my-3 px-5 position-relative">
-    <div class="row my-3">
-        <nav class="col-10">
-            <ul class="d-flex justify-content-around align-items-center h-100 m-0 list-unstyled">
-                <li>
-                    <a href="" class="btn px-3 py-2 nav-btn__active">
-                        <i class="bi bi-star" style="font-size: 1.3rem"></i>
-                        <span class="ps-2">Реагирование</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="btn px-3 py-2 nav-btn">
-                        <i class="bi bi-bar-chart" style="font-size: 1.3rem"></i>
-                        <span class="ps-2">Статистика</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="btn px-3 py-2 nav-btn">
-                        <i class="bi bi-calendar3" style="font-size: 1.3rem"></i>
-                        <span class="ps-2">Служба</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="btn px-3 py-2 nav-btn">
-                        <i class="bi bi-truck" style="font-size: 1.3rem"></i>
-                        <span class="ps-2">Техника</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="btn px-3 py-2 nav-btn">
-                        <i class="bi bi-file-earmark-text" style="font-size: 1.3rem"></i>
-                        <span class="ps-2">Документы</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="btn px-3 py-2 nav-btn">
-                        <i class="bi bi-folder2" style="font-size: 1.3rem"></i>
-                        <span class="ps-2">Планирование</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="btn px-3 py-2 nav-btn">
-                        <i class="bi bi-map" style="font-size: 1.3rem"></i>
-                        <span class="ps-2">Карта</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <div class="col-2">
-            <ul class="d-flex justify-content-end align-items-center h-100 m-0 p-0 list-unstyled">
-                <li class="mx-3">
-                    <a href=""><i class="bi bi-person-circle" style="font-size: 1.3rem; color: #F2A45F"></i></a>
-                </li>
-                <li class="mx-3">
-                    <a href=""><i class="bi bi-gear" style="font-size: 1.3rem; color: #F2A45F"></i></a>
-                </li>
-            </ul>
+<body>
+    <div class="container-fluid my-3 px-5 position-relative">
+        <div class="row my-3">
+            <nav class="col-10">
+                <ul class="d-flex justify-content-around align-items-center m-0 h-100 list-unstyled">
+                    <li>
+                        <a href=""
+                            class="d-flex justify-content-center align-items-center py-2 px-4 nav-button nav-button__active">
+                            <i class="bi bi-star me-2 nav-button_icon"></i>
+                            <span class="nav-button_text">Реагирование</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="d-flex justify-content-center align-items-center py-2 px-4 nav-button">
+                            <i class="bi bi-bar-chart me-2 nav-button_icon"></i>
+                            <span class="nav-button_text">Статистика</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="d-flex justify-content-center align-items-center py-2 px-4 nav-button">
+                            <i class="bi bi-calendar3 me-2 nav-button_icon"></i>
+                            <span class="nav-button_text">Служба</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="d-flex justify-content-center align-items-center py-2 px-4 nav-button">
+                            <i class="bi bi-truck me-2 nav-button_icon"></i>
+                            <span class="nav-button_text">Техника</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="d-flex justify-content-center align-items-center py-2 px-4 nav-button">
+                            <i class="bi bi-file-earmark-text me-2 nav-button_icon"></i>
+                            <span class="nav-button_text">Документы</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="d-flex justify-content-center align-items-center py-2 px-4 nav-button">
+                            <i class="bi bi-folder2 me-2 nav-button_icon"></i>
+                            <span class="nav-button_text">Планирование</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="d-flex justify-content-center align-items-center py-2 px-4 nav-button">
+                            <i class="bi bi-map me-2 nav-button_icon"></i>
+                            <span class="nav-button_text">Карта</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="col-2">
+                <ul class="d-flex justify-content-end align-items-center h-100 m-0 list-unstyled">
+                    <li class="mx-2 fs-5">
+                        <a href="" class="px-2 py-1 nav-icon nav-icon">
+                            <i class="bi bi-person-circle nav-icon_icon"></i>
+                        </a>
+                    </li>
+                    <li class="mx-2 fs-5">
+                        <a href="" class="px-2 py-1 nav-icon">
+                            <i class="bi bi-gear nav-icon_icon"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <div class="row gx-5 justify-content-between">
-        <!-- табличка очень потная на чистом бутстрапе ее хуй сверстаешь -->
-        <div class="col-10 text-white text-center">
-            <div class="row mb-5">
-                <div class="fixed-header-table">
-                    <table class="table table-borderless text-white">
-                        <thead>
-                            <tr>
-                                <th class="p-3">Статус</th>
-                                <th class="p-3">Дата</th>
-                                <th class="p-3">Время сообщения</th>
-                                <th class="p-3">Адрес</th>
-                                <th class="p-3">Характер выезда</th>
-                                <th class="p-3">Номер вызова</th>
-                                <th class="p-3">Спасено</th>
-                                <th class="p-3">Пострадало</th>
-                                <th class="p-3">Погибло</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="p-3"><i class="bi bi-circle-fill" style="color: #D3434D"></i></td>
-                                <td class="p-3">04.09.2022</td>
-                                <td class="p-3">20:05</td>
-                                <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
-                                <td class="p-3">Пожар</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">0</td>
-                                <td class="p-3">0</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3"><i class="bi bi-circle-fill" style="color: #F2A45F"></i></td>
-                                <td class="p-3">04.09.2022</td>
-                                <td class="p-3">20:05</td>
-                                <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
-                                <td class="p-3">Пожар</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">0</td>
-                                <td class="p-3">0</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3"><i class="bi bi-circle-fill" style="color: #8FCFC1"></i></td>
-                                <td class="p-3">04.09.2022</td>
-                                <td class="p-3">20:05</td>
-                                <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
-                                <td class="p-3">Пожар</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">0</td>
-                                <td class="p-3">0</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3"><i class="bi bi-circle-fill" style="color: #D3434D"></i></td>
-                                <td class="p-3">04.09.2022</td>
-                                <td class="p-3">20:05</td>
-                                <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
-                                <td class="p-3">Пожар</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">0</td>
-                                <td class="p-3">0</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3"><i class="bi bi-circle-fill" style="color: #F2A45F"></i></td>
-                                <td class="p-3">04.09.2022</td>
-                                <td class="p-3">20:05</td>
-                                <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
-                                <td class="p-3">Пожар</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">0</td>
-                                <td class="p-3">0</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3"><i class="bi bi-circle-fill" style="color: #8FCFC1"></i></td>
-                                <td class="p-3">04.09.2022</td>
-                                <td class="p-3">20:05</td>
-                                <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
-                                <td class="p-3">Пожар</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">0</td>
-                                <td class="p-3">0</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3"><i class="bi bi-circle-fill" style="color: #D3434D"></i></td>
-                                <td class="p-3">04.09.2022</td>
-                                <td class="p-3">20:05</td>
-                                <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
-                                <td class="p-3">Пожар</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">0</td>
-                                <td class="p-3">0</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3"><i class="bi bi-circle-fill" style="color: #F2A45F"></i></td>
-                                <td class="p-3">04.09.2022</td>
-                                <td class="p-3">20:05</td>
-                                <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
-                                <td class="p-3">Пожар</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">0</td>
-                                <td class="p-3">0</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3"><i class="bi bi-circle-fill" style="color: #8FCFC1"></i></td>
-                                <td class="p-3">04.09.2022</td>
-                                <td class="p-3">20:05</td>
-                                <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
-                                <td class="p-3">Пожар</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">0</td>
-                                <td class="p-3">0</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3"><i class="bi bi-circle-fill" style="color: #D3434D"></i></td>
-                                <td class="p-3">04.09.2022</td>
-                                <td class="p-3">20:05</td>
-                                <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
-                                <td class="p-3">Пожар</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">0</td>
-                                <td class="p-3">0</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3"><i class="bi bi-circle-fill" style="color: #F2A45F"></i></td>
-                                <td class="p-3">04.09.2022</td>
-                                <td class="p-3">20:05</td>
-                                <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
-                                <td class="p-3">Пожар</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">0</td>
-                                <td class="p-3">0</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3"><i class="bi bi-circle-fill" style="color: #8FCFC1"></i></td>
-                                <td class="p-3">04.09.2022</td>
-                                <td class="p-3">20:05</td>
-                                <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
-                                <td class="p-3">Пожар</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">0</td>
-                                <td class="p-3">0</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3"><i class="bi bi-circle-fill" style="color: #D3434D"></i></td>
-                                <td class="p-3">04.09.2022</td>
-                                <td class="p-3">20:05</td>
-                                <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
-                                <td class="p-3">Пожар</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">0</td>
-                                <td class="p-3">0</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3"><i class="bi bi-circle-fill" style="color: #F2A45F"></i></td>
-                                <td class="p-3">04.09.2022</td>
-                                <td class="p-3">20:05</td>
-                                <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
-                                <td class="p-3">Пожар</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">0</td>
-                                <td class="p-3">0</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3"><i class="bi bi-circle-fill" style="color: #8FCFC1"></i></td>
-                                <td class="p-3">04.09.2022</td>
-                                <td class="p-3">20:05</td>
-                                <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
-                                <td class="p-3">Пожар</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">0</td>
-                                <td class="p-3">0</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3"><i class="bi bi-circle-fill" style="color: #D3434D"></i></td>
-                                <td class="p-3">04.09.2022</td>
-                                <td class="p-3">20:05</td>
-                                <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
-                                <td class="p-3">Пожар</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">0</td>
-                                <td class="p-3">0</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3"><i class="bi bi-circle-fill" style="color: #F2A45F"></i></td>
-                                <td class="p-3">04.09.2022</td>
-                                <td class="p-3">20:05</td>
-                                <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
-                                <td class="p-3">Пожар</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">0</td>
-                                <td class="p-3">0</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3"><i class="bi bi-circle-fill" style="color: #8FCFC1"></i></td>
-                                <td class="p-3">04.09.2022</td>
-                                <td class="p-3">20:05</td>
-                                <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
-                                <td class="p-3">Пожар</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">0</td>
-                                <td class="p-3">0</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3"><i class="bi bi-circle-fill" style="color: #D3434D"></i></td>
-                                <td class="p-3">04.09.2022</td>
-                                <td class="p-3">20:05</td>
-                                <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
-                                <td class="p-3">Пожар</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">0</td>
-                                <td class="p-3">0</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3"><i class="bi bi-circle-fill" style="color: #F2A45F"></i></td>
-                                <td class="p-3">04.09.2022</td>
-                                <td class="p-3">20:05</td>
-                                <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
-                                <td class="p-3">Пожар</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">0</td>
-                                <td class="p-3">0</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3"><i class="bi bi-circle-fill" style="color: #8FCFC1"></i></td>
-                                <td class="p-3">04.09.2022</td>
-                                <td class="p-3">20:05</td>
-                                <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
-                                <td class="p-3">Пожар</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">0</td>
-                                <td class="p-3">0</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3"><i class="bi bi-circle-fill" style="color: #D3434D"></i></td>
-                                <td class="p-3">04.09.2022</td>
-                                <td class="p-3">20:05</td>
-                                <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
-                                <td class="p-3">Пожар</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">0</td>
-                                <td class="p-3">0</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3"><i class="bi bi-circle-fill" style="color: #F2A45F"></i></td>
-                                <td class="p-3">04.09.2022</td>
-                                <td class="p-3">20:05</td>
-                                <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
-                                <td class="p-3">Пожар</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">0</td>
-                                <td class="p-3">0</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3"><i class="bi bi-circle-fill" style="color: #8FCFC1"></i></td>
-                                <td class="p-3">04.09.2022</td>
-                                <td class="p-3">20:05</td>
-                                <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
-                                <td class="p-3">Пожар</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">1</td>
-                                <td class="p-3">0</td>
-                                <td class="p-3">0</td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <div class="row gx-5 justify-content-between">
+            <!-- табличка очень потная на чистом бутстрапе ее хуй сверстаешь -->
+            <div class="col-10 text-white text-center">
+                <div class="row mb-5">
+                    <div class="fixed-header-table">
+                        <table class="table table-borderless text-white">
+                            <thead>
+                                <tr>
+                                    <th class="p-3">Статус</th>
+                                    <th class="p-3">Дата</th>
+                                    <th class="p-3">Время сообщения</th>
+                                    <th class="p-3">Адрес</th>
+                                    <th class="p-3">Характер выезда</th>
+                                    <th class="p-3">Номер вызова</th>
+                                    <th class="p-3">Спасено</th>
+                                    <th class="p-3">Пострадало</th>
+                                    <th class="p-3">Погибло</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="p-3"><i class="bi bi-circle-fill" style="color: #D3434D"></i></td>
+                                    <td class="p-3">04.09.2022</td>
+                                    <td class="p-3">20:05</td>
+                                    <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
+                                    <td class="p-3">Пожар</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">0</td>
+                                    <td class="p-3">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><i class="bi bi-circle-fill" style="color: #F2A45F"></i></td>
+                                    <td class="p-3">04.09.2022</td>
+                                    <td class="p-3">20:05</td>
+                                    <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
+                                    <td class="p-3">Пожар</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">0</td>
+                                    <td class="p-3">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><i class="bi bi-circle-fill" style="color: #8FCFC1"></i></td>
+                                    <td class="p-3">04.09.2022</td>
+                                    <td class="p-3">20:05</td>
+                                    <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
+                                    <td class="p-3">Пожар</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">0</td>
+                                    <td class="p-3">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><i class="bi bi-circle-fill" style="color: #D3434D"></i></td>
+                                    <td class="p-3">04.09.2022</td>
+                                    <td class="p-3">20:05</td>
+                                    <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
+                                    <td class="p-3">Пожар</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">0</td>
+                                    <td class="p-3">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><i class="bi bi-circle-fill" style="color: #F2A45F"></i></td>
+                                    <td class="p-3">04.09.2022</td>
+                                    <td class="p-3">20:05</td>
+                                    <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
+                                    <td class="p-3">Пожар</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">0</td>
+                                    <td class="p-3">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><i class="bi bi-circle-fill" style="color: #8FCFC1"></i></td>
+                                    <td class="p-3">04.09.2022</td>
+                                    <td class="p-3">20:05</td>
+                                    <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
+                                    <td class="p-3">Пожар</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">0</td>
+                                    <td class="p-3">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><i class="bi bi-circle-fill" style="color: #D3434D"></i></td>
+                                    <td class="p-3">04.09.2022</td>
+                                    <td class="p-3">20:05</td>
+                                    <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
+                                    <td class="p-3">Пожар</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">0</td>
+                                    <td class="p-3">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><i class="bi bi-circle-fill" style="color: #F2A45F"></i></td>
+                                    <td class="p-3">04.09.2022</td>
+                                    <td class="p-3">20:05</td>
+                                    <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
+                                    <td class="p-3">Пожар</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">0</td>
+                                    <td class="p-3">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><i class="bi bi-circle-fill" style="color: #8FCFC1"></i></td>
+                                    <td class="p-3">04.09.2022</td>
+                                    <td class="p-3">20:05</td>
+                                    <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
+                                    <td class="p-3">Пожар</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">0</td>
+                                    <td class="p-3">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><i class="bi bi-circle-fill" style="color: #D3434D"></i></td>
+                                    <td class="p-3">04.09.2022</td>
+                                    <td class="p-3">20:05</td>
+                                    <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
+                                    <td class="p-3">Пожар</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">0</td>
+                                    <td class="p-3">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><i class="bi bi-circle-fill" style="color: #F2A45F"></i></td>
+                                    <td class="p-3">04.09.2022</td>
+                                    <td class="p-3">20:05</td>
+                                    <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
+                                    <td class="p-3">Пожар</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">0</td>
+                                    <td class="p-3">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><i class="bi bi-circle-fill" style="color: #8FCFC1"></i></td>
+                                    <td class="p-3">04.09.2022</td>
+                                    <td class="p-3">20:05</td>
+                                    <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
+                                    <td class="p-3">Пожар</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">0</td>
+                                    <td class="p-3">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><i class="bi bi-circle-fill" style="color: #D3434D"></i></td>
+                                    <td class="p-3">04.09.2022</td>
+                                    <td class="p-3">20:05</td>
+                                    <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
+                                    <td class="p-3">Пожар</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">0</td>
+                                    <td class="p-3">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><i class="bi bi-circle-fill" style="color: #F2A45F"></i></td>
+                                    <td class="p-3">04.09.2022</td>
+                                    <td class="p-3">20:05</td>
+                                    <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
+                                    <td class="p-3">Пожар</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">0</td>
+                                    <td class="p-3">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><i class="bi bi-circle-fill" style="color: #8FCFC1"></i></td>
+                                    <td class="p-3">04.09.2022</td>
+                                    <td class="p-3">20:05</td>
+                                    <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
+                                    <td class="p-3">Пожар</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">0</td>
+                                    <td class="p-3">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><i class="bi bi-circle-fill" style="color: #D3434D"></i></td>
+                                    <td class="p-3">04.09.2022</td>
+                                    <td class="p-3">20:05</td>
+                                    <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
+                                    <td class="p-3">Пожар</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">0</td>
+                                    <td class="p-3">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><i class="bi bi-circle-fill" style="color: #F2A45F"></i></td>
+                                    <td class="p-3">04.09.2022</td>
+                                    <td class="p-3">20:05</td>
+                                    <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
+                                    <td class="p-3">Пожар</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">0</td>
+                                    <td class="p-3">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><i class="bi bi-circle-fill" style="color: #8FCFC1"></i></td>
+                                    <td class="p-3">04.09.2022</td>
+                                    <td class="p-3">20:05</td>
+                                    <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
+                                    <td class="p-3">Пожар</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">0</td>
+                                    <td class="p-3">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><i class="bi bi-circle-fill" style="color: #D3434D"></i></td>
+                                    <td class="p-3">04.09.2022</td>
+                                    <td class="p-3">20:05</td>
+                                    <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
+                                    <td class="p-3">Пожар</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">0</td>
+                                    <td class="p-3">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><i class="bi bi-circle-fill" style="color: #F2A45F"></i></td>
+                                    <td class="p-3">04.09.2022</td>
+                                    <td class="p-3">20:05</td>
+                                    <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
+                                    <td class="p-3">Пожар</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">0</td>
+                                    <td class="p-3">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><i class="bi bi-circle-fill" style="color: #8FCFC1"></i></td>
+                                    <td class="p-3">04.09.2022</td>
+                                    <td class="p-3">20:05</td>
+                                    <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
+                                    <td class="p-3">Пожар</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">0</td>
+                                    <td class="p-3">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><i class="bi bi-circle-fill" style="color: #D3434D"></i></td>
+                                    <td class="p-3">04.09.2022</td>
+                                    <td class="p-3">20:05</td>
+                                    <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
+                                    <td class="p-3">Пожар</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">0</td>
+                                    <td class="p-3">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><i class="bi bi-circle-fill" style="color: #F2A45F"></i></td>
+                                    <td class="p-3">04.09.2022</td>
+                                    <td class="p-3">20:05</td>
+                                    <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
+                                    <td class="p-3">Пожар</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">0</td>
+                                    <td class="p-3">0</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3"><i class="bi bi-circle-fill" style="color: #8FCFC1"></i></td>
+                                    <td class="p-3">04.09.2022</td>
+                                    <td class="p-3">20:05</td>
+                                    <td class="p-3">г. Энгельс, ул. Студенческая, 19</td>
+                                    <td class="p-3">Пожар</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">1</td>
+                                    <td class="p-3">0</td>
+                                    <td class="p-3">0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="d-flex justify-content-end align-items-center h-100 m-0 p-0 list-unstyled">
+                            <li class="mx-1">
+                                <button class="btn btn-rounded text-white px-3 py-2"
+                                    style="background-color: #24263A;">1</button>
+                            </li>
+                            <li class="mx-1">
+                                <button class="btn btn-rounded px-3 py-2"
+                                    style="background-color: #F2A45F; color: #14142B">2</button>
+                            </li>
+                            <li class="mx-1">
+                                <button class="btn btn-rounded px-3 py-2"
+                                    style="background-color: #F2A45F; color: #14142B">3</button>
+                            </li>
+                            <li class="mx-1">
+                                <button class="btn btn-rounded px-3 py-2"
+                                    style="background-color: #F2A45F; color: #14142B">4</button>
+                            </li>
+                            <li class="mx-1">
+                                <button class="btn btn-rounded px-3 py-2"
+                                    style="background-color: #F2A45F; color: #14142B">5</button>
+                            </li>
+                            <li class="mx-1">
+                                <button class="btn btn-rounded text-white px-3 py-2"
+                                    style="background-color: #24263A;">...</button>
+                            </li>
+                            <li class="mx-1">
+                                <button class="btn btn-rounded px-3 py-2"
+                                    style="background-color: #F2A45F; color: #14142B">10</button>
+                            </li>
+                            <li class="mx-1">
+                                <button class="btn btn-rounded px-3 py-2"
+                                    style="background-color: #F2A45F; color: #14142B">Далее</button>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <ul class="d-flex justify-content-end align-items-center h-100 m-0 p-0 list-unstyled">
-                        <li class="mx-1">
-                            <button class="btn btn-rounded text-white px-3 py-2"
-                                style="background-color: #24263A;">1</button>
-                        </li>
-                        <li class="mx-1">
-                            <button class="btn btn-rounded px-3 py-2"
-                                style="background-color: #F2A45F; color: #14142B">2</button>
-                        </li>
-                        <li class="mx-1">
-                            <button class="btn btn-rounded px-3 py-2"
-                                style="background-color: #F2A45F; color: #14142B">3</button>
-                        </li>
-                        <li class="mx-1">
-                            <button class="btn btn-rounded px-3 py-2"
-                                style="background-color: #F2A45F; color: #14142B">4</button>
-                        </li>
-                        <li class="mx-1">
-                            <button class="btn btn-rounded px-3 py-2"
-                                style="background-color: #F2A45F; color: #14142B">5</button>
-                        </li>
-                        <li class="mx-1">
-                            <button class="btn btn-rounded text-white px-3 py-2"
-                                style="background-color: #24263A;">...</button>
-                        </li>
-                        <li class="mx-1">
-                            <button class="btn btn-rounded px-3 py-2"
-                                style="background-color: #F2A45F; color: #14142B">10</button>
-                        </li>
-                        <li class="mx-1">
-                            <button class="btn btn-rounded px-3 py-2"
-                                style="background-color: #F2A45F; color: #14142B">Далее</button>
-                        </li>
-                    </ul>
+            <div class="col-2">
+                <div class="ms-3 mb-4">
+                    <div
+                        class="d-flex flex-column justify-content-center align-items-start fs-5 text-white px-4 py-3 weather">
+                        <div class="ms-4">
+                            <p class="mb-0">04.09.2022</p>
+                            <p class="mb-3">20:05:10</p>
+                            <p class="mb-0"><i class="bi bi-geo-alt text-secondary me-2"></i> Энгельс</p>
+                            <p class="mb-0"><i class="bi bi-brightness-high me-2"></i> Ясно +16<sup>o</sup></p>
+                            <p class="mb-0"><i class="bi bi-wind me-2"></i> 1 м/c</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="ms-3 mb-4">
+                    <div
+                        class="d-flex flex-column justify-content-center align-items-start fs-5 text-white px-4 py-3 stat">
+                        <p class="my-1"><span class="me-2 stat_count stat_count__total">1</span> Реагированиe</p>
+                        <p class="my-1"><span class="me-2 stat_count stat_count__active">1</span> В процессе</p>
+                        <p class="my-1"><span class="me-2 stat_count stat_count__finished">14</span> Завершено</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-2">
-            <div class="d-flex flex-column justify-content-center align-items-start rounded-3 fs-5 py-3 ps-5 mb-5 text-white"
-                style="background-color: #24263A;">
-                <p class="ps-3 mb-0">04.09.2022</p>
-                <p class="ps-3 my-1">20:05:10</p>
-                <p class="ps-3 my-2"><i class="bi bi-geo-alt text-secondary me-2"></i> Энгельс</p>
-                <p class="ps-3 my-2"><i class="bi bi-brightness-high me-2" style="color: #F2A45F"></i> Ясно
-                    +16<sup>o</sup></p>
-                <p class="ps-3 my-2"><i class="bi bi-wind me-2" style="color: #87CFFB"></i> 1 м/c</p>
-            </div>
-            <div class="d-flex flex-column justify-content-center align-items-start rounded-3 fs-5 py-3 ps-5 text-white"
-                style="background-color: #24263A;">
-                <p class="my-1"><span class="me-2" style="color: #D3434D;">1</span> Реагирование</p>
-                <p class="my-1"><span class="me-2" style="color: #F2A45F">1</span> В процессе</p>
-                <p class="my-1"><span class="me-2" style="color: #8FCFC1">14</span> Завершено</p>
-            </div>
+        <div class="add-btn rounded-circle d-flex justify-content-center justify-items-center">
+            <i class="bi bi-plus-circle-fill" style="font-size: 5.5rem; color: #D3434D;"></i>
         </div>
-    </div>
-    <div class="add-btn rounded-circle d-flex justify-content-center justify-items-center">
-        <i class="bi bi-plus-circle-fill" style="font-size: 5.5rem; color: #D3434D;"></i>
     </div>
 </body>
 
