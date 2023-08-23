@@ -117,8 +117,8 @@ class App extends React.Component {
 
                   }}>
                 <p style={{ display: 'flex', flexDirection: 'row'}} >
-                  <a className="nav-link" href="#">Link</a>
-                  <a className="nav-link" href="#">Link</a>
+                  <a className="nav-link" href="frontend/src#">Link</a>
+                  <a className="nav-link" href="frontend/src#">Link</a>
                 </p>
                 <WeatherWidget style={{marginTop: '100px'}}/>
                 <Widget style={{marginTop: '100px'}}/>
