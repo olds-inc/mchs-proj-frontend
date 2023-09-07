@@ -1,0 +1,30 @@
+@import '../../common/scss/colors';
+
+.nav-button {
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: $bg-color-passive;
+    text-decoration: none;
+
+    &_icon {
+        color: $icon-color-passive;
+    }
+
+    &_text {
+        color: $text-color-passive;
+    }
+
+    &:active,
+    &:hover,
+    &__active {
+        background-color: $bg-color-active;
+
+        .nav-button_icon {
+            color: $icon-color-active
+        }
+
+        .nav-button_text {
+            color: $text-color-active;
+        }
+    }
+}
