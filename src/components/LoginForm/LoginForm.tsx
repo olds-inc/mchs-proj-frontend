@@ -4,7 +4,6 @@ import axios from "axios";
 import "./LoginForm.scss";
 
 // todo: надо сделать финитэ стейт машинэ состояний формы и транзишены между ними
-// todo: пока я писал эту хуйню я понял что без TypeScript не обойтись
 
 export default function LoginForm() {
   const formRef = useRef(null);
@@ -31,7 +30,10 @@ export default function LoginForm() {
     accessToken: null,
   });
 
-  function handleChange(event, inputId) {
+  function handleChange(
+    event: React.ChangeEvent<HTMLInputElement>,
+    inputId: string
+  ) {
     const updatedInputs = state.inputs.map((input) => {
       if (input.id === inputId) {
         input.value = event.target.value;
@@ -45,7 +47,7 @@ export default function LoginForm() {
     });
   }
 
-  function handleSubmit(event) {
+  function handleSubmit(event: React.ChangeEvent<HTMLFormElement>) {
     // todo: валидация полей
 
     event.preventDefault();
@@ -122,7 +124,7 @@ export default function LoginForm() {
               <>
                 <h4>Details:</h4>
                 <ul>
-                  {state.error.details.map((detail, idx) => (
+                  {state.error.details.map((detail: any, idx: number) => (
                     <li key={idx}>
                       {detail.loc[1]}: {detail.msg}
                     </li>

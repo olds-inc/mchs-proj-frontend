@@ -2,11 +2,11 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/index.ts",
   mode: "development",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "index_bundle.js",
+    filename: "bundle.js",
   },
   target: "web",
   devServer: {
@@ -22,15 +22,12 @@ module.exports = {
     liveReload: true,
     compress: true,
   },
-  resolve: {
-    extensions: [".js", ".jsx", ".json"],
-  },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.tsx?$/,
+        use: "ts-loader",
         exclude: /node_modules/,
-        use: "babel-loader",
       },
       {
         test: /\.s[ac]ss$/i,
@@ -44,6 +41,9 @@ module.exports = {
         ],
       },
     ],
+  },
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"],
   },
   plugins: [
     new HtmlWebpackPlugin({

@@ -5,10 +5,6 @@ import "./index.scss";
 
 import App from "./components/App/App";
 
-const root = createRoot(document.getElementById("root"));
-
-root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>
+createRoot(document.getElementById("root")).render(
+  React.createElement(StrictMode, { children: React.createElement(App) })
 );
