@@ -1,6 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { createUseStyles } from "react-jss";
+import NavBar from "./NavBar";
+
+// warn: only global styles
+const useAppStyles = createUseStyles({
+  "@global": {
+    body: {
+      backgroundColor: "#101122",
+      fontFamily: "monospace",
+      fontSize: "15px",
+    },
+  },
+});
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
@@ -10,18 +22,6 @@ export default function App() {
     accessToken: string;
     refreshToken: string;
   }>({ accessToken: "", refreshToken: "" });
-
-  async function handleUserSuccessLogin(
-    accessToken: string,
-    refreshToken: string
-  ) {
-    setLoggedIn(true);
-    setTokens({
-      ...tokens,
-      accessToken: accessToken,
-      refreshToken: refreshToken,
-    });
-  }
 
   // todo: реакт генерит 2 запроса при рендерах, чтобы от этого избавиться нужно подключать модную либу
   // но пока на этой похуй т.к. в стейт кладется результат последнгео запроса
@@ -43,32 +43,7 @@ export default function App() {
     }
   }, [loggedIn]);
 
-  const useStyles = createUseStyles({
-    "@global": {
-      body: {
-        backgroundColor: "lavender",
-        fontFamily: "monospace",
-      },
-    },
-    app: {
-      color: "grey",
-    },
-  });
-  const classes = useStyles();
+  useAppStyles();
 
-  return (
-    <div className="app">
-      <h1>MCHS Project Frontend</h1>
-      {!loggedIn && (
-        <div>
-          <h2>Loading ...</h2>
-        </div>
-      )}
-      {loggedIn && (
-        <div>
-          <h2 className={classes.app}>Privetik</h2>
-        </div>
-      )}
-    </div>
-  );
+  return <NavBar />;
 }
