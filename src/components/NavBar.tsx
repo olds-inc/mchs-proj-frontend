@@ -10,8 +10,8 @@ import {
   FileEarmarkText,
   Files,
   Map,
-  PersonCircle,
-  Gear,
+  BoxArrowInLeft,
+  BoxArrowInRight,
 } from "react-bootstrap-icons";
 
 /*
@@ -41,7 +41,15 @@ const useNavBarStyles = createUseStyles({
   },
 });
 
-export default function NavBar() {
+export default function NavBar({
+  loggedIn = false,
+  onLoginClick,
+  onLogoutClick,
+}: {
+  loggedIn: boolean;
+  onLoginClick: (event: React.SyntheticEvent) => void;
+  onLogoutClick: (event: React.SyntheticEvent) => void;
+}) {
   const classes = useNavBarStyles();
 
   return (
@@ -63,8 +71,25 @@ export default function NavBar() {
         <NavElementWithTitle title="Карта" IconComponent={Map} />
       </div>
       <div className="rightSide">
-        <NavElementWithIcon IconComponent={PersonCircle} />
-        <NavElementWithIcon IconComponent={Gear} />
+        {loggedIn ? (
+          <>
+            <div onClick={onLogoutClick}>
+              <NavElementWithTitle
+                title="Выйти"
+                IconComponent={BoxArrowInRight}
+              />
+            </div>
+          </>
+        ) : (
+          <>
+            <div onClick={onLoginClick}>
+              <NavElementWithTitle
+                title="Войти"
+                IconComponent={BoxArrowInLeft}
+              />
+            </div>
+          </>
+        )}
       </div>
     </nav>
   );
