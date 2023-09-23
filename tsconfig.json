@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "outDir": "./jopa/",
+        "outDir": "./dist/bundle.js",
         "noImplicitAny": true,
         "module": "es6",
         "target": "es5",
