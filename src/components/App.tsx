@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Button, Modal, Table } from "react-bootstrap";
-import {
-  CircleFill,
-  PlusLg,
-  GeoAlt,
-  Wind,
-  BrightnessHigh,
-} from "react-bootstrap-icons";
+import { Container, Row, Col, Button, Modal } from "react-bootstrap";
+import { PlusLg } from "react-bootstrap-icons";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -24,11 +18,13 @@ import { ErrorBoundaryContext } from "../contexts/ErrorBoundary";
 import AlertWithError from "./AlertWithError";
 import CreateCardForm from "./CreateCardForm";
 import PageNavbar from "./PageNavbar";
+import TablichkaEbanaya from "./TablichkaEbanaya";
+import CustomModalDialog from "./CustomModalDialog";
 
 export default function App() {
   const [errorMessage, setErrorMessage] = useState<ErrorMessage | null>(null);
   const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null);
-  const [modalShown, setModalShown] = useState(false);
+  const [modalShown, setModalShown] = useState<boolean>(false);
 
   function handleModalClose() {
     setModalShown(false);
@@ -79,39 +75,10 @@ export default function App() {
               <PageNavbar />
               <Container className="mt-5" fluid={true}>
                 <Row>
-                  <Col md={10}>
+                  <Col>
                     <Row>
                       <Col>
-                        <Table className="text-center">
-                          <thead>
-                            <tr>
-                              <th>Статус</th>
-                              <th>Дата</th>
-                              <th>Время сообщения</th>
-                              <th>Адрес</th>
-                              <th>Характер выезда</th>
-                              <th>Номер вызова</th>
-                              <th>Спасено</th>
-                              <th>Пострадало</th>
-                              <th>Погибло</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>
-                                <CircleFill size={15} className="text-danger" />
-                              </td>
-                              <td>04.09.2022</td>
-                              <td>20:05</td>
-                              <td>г. Энгельс, ул. Студенческая, 19</td>
-                              <td>Пожар</td>
-                              <td>1</td>
-                              <td>1</td>
-                              <td>0</td>
-                              <td>0</td>
-                            </tr>
-                          </tbody>
-                        </Table>
+                        <TablichkaEbanaya />
                       </Col>
                     </Row>
                     <Row>
@@ -119,50 +86,11 @@ export default function App() {
                         <Button
                           size="lg"
                           variant="danger"
-                          className="rounded-circle bg-danger p-4"
-                          onClick={handleModalShow}
+                          className="rounded-circle bg-danger p-4 mx-3"
+                          onClick={() => handleModalShow()}
                         >
                           <PlusLg className="text-light" size={30} />
                         </Button>
-                      </Col>
-                    </Row>
-                  </Col>
-                  <Col md={2} className="position-relative">
-                    <Row>
-                      <Col>
-                        <div className="rounded-4 bg-dark text-light mx-5 mb-5 p-4 d-flex flex-column justify-content-center align-items-start">
-                          <p className="mb-1">04.09.2022</p>
-                          <p className="mb-1">20:05:10</p>
-                          <p className="mb-1">
-                            <GeoAlt size={20} className="me-2 text-secondary" />
-                            Энгельс
-                          </p>
-                          <p className="mb-1">
-                            <BrightnessHigh
-                              size={20}
-                              className="me-2 text-warning"
-                            />
-                            Ясно
-                          </p>
-                          <p className="mb-0">
-                            <Wind size={20} className="me-2 text-info" />1 м/с
-                          </p>
-                        </div>
-
-                        <div className="rounded-4 bg-dark text-light mx-5 p-4 d-flex flex-column justify-content-center align-items-start">
-                          <p className="mb-3">
-                            <span className="me-4 text-danger">1</span>
-                            Реагирование
-                          </p>
-                          <p className="mb-3">
-                            <span className="me-4 text-warning">1</span>В
-                            процессе
-                          </p>
-                          <p className="mb-0">
-                            <span className="me-4 text-success">14</span>
-                            Завершено
-                          </p>
-                        </div>
                       </Col>
                     </Row>
                   </Col>
@@ -171,16 +99,14 @@ export default function App() {
 
               <Modal
                 show={modalShown}
-                centered
-                onHide={handleModalClose}
                 size="xl"
+                backdrop={"static"}
+                onCloseClick={handleModalClose}
+                title="Создание карточки"
+                backgroundColor="rgba(211, 67, 77, 1)"
+                dialogAs={CustomModalDialog}
               >
-                <Modal.Header closeButton>
-                  <Modal.Title>Создание карточки</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <CreateCardForm onClose={handleModalClose} />
-                </Modal.Body>
+                <CreateCardForm onClose={handleModalClose} />
               </Modal>
             </>
           )}
