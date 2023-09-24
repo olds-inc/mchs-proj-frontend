@@ -7,7 +7,7 @@ export default function CustomModalDialog({
   backgroundColor,
   onCloseClick,
 }: {
-  children: React.ReactNode;
+  children: React.ReactElement;
   title: string;
   backgroundColor: string;
   onCloseClick: (event: React.SyntheticEvent) => void;

@@ -8,7 +8,18 @@ import {
 } from "react-router-dom";
 
 import App from "./App";
-import { HomePage, ReactionPage, StatisticsPage } from "./pages";
+import {
+  AccountPage,
+  HomePage,
+  ReactionPage,
+  SettingsPage,
+  StatisticsPage,
+  MapPage,
+  DutyPage,
+  VehiclesPage,
+  DocumentsPage,
+  PlanningPage,
+} from "./pages";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +27,13 @@ const router = createBrowserRouter(
       <Route element={<HomePage />} path="/" />
       <Route element={<ReactionPage />} path="/reaction" />
       <Route element={<StatisticsPage />} path="/statistics" />
+      <Route element={<DutyPage />} path="/duty" />
+      <Route element={<VehiclesPage />} path="/vehicles" />
+      <Route element={<DocumentsPage />} path="/documents" />
+      <Route element={<PlanningPage />} path="/planning" />
+      <Route element={<MapPage />} path="/map" />
+      <Route element={<AccountPage />} path="/account" />
+      <Route element={<SettingsPage />} path="/settings" />
     </Route>
   )
 );
