@@ -1,7 +1,12 @@
 import React, { useContext, useRef, useState } from "react";
-import { Row, Col, Form, Button, Alert } from "react-bootstrap";
+import { Row, Col, Form, Button } from "react-bootstrap";
 
-import { CurrentUser, ErrorMessage } from "../types";
+import {
+  CurrentUser,
+  ErrorMessage,
+  DifficultyLevel,
+  SizeUnits,
+} from "../types";
 
 import CardService from "../services/card";
 
@@ -30,22 +35,34 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
 
     const cardService = new CardService(currentUser?.tokens?.accessToken);
 
-    // cardService
-    //   .addCard({
-    //     address: form["address"].value,
-    //     comment: "fake", // todo: remove
-    //     applicant: form["applicant"].value,
-    //     phone_number: form["phone_number"].value,
-    //     copies: 1, // todo: remove
-    //   })
-    //   .then(() => {
-    //     setCardSuccessfullyCreated(true);
-    //   })
-    //   .catch((error) => {
-    //     setErrorMessage(extractErrorPayload(error));
-    //   });
+    const realReason =
+      form["reason"].value === "other" ? form["reason_text"].value : "ne other";
 
-    setCardSuccessfullyCreated(true);
+    const timeOfCallTime = form["time_of_call_time"].value;
+    const timeOfCallDate = form["time_of_call_date"].value;
+
+    cardService
+      .addCard({
+        address: form["address"].value,
+        applicant: form["applicant"].value,
+        phone_number: form["phone_number"].value,
+        status: -1,
+        reason: realReason,
+        place_description: form["place_description"].value,
+        size: form["size"].value,
+        size_units: form["size_units"].value,
+        time_of_call: Date.parse(`${timeOfCallDate} ${timeOfCallTime}`),
+        difficulty_level: form["difficulty_level"].value,
+        squad_numbers: form["squad_numbers"].value
+          .split(", ")
+          .map((str: string) => parseInt(str)),
+      })
+      .then(() => {
+        setCardSuccessfullyCreated(true);
+      })
+      .catch((error) => {
+        setErrorMessage(extractErrorPayload(error));
+      });
   }
 
   return (
@@ -85,6 +102,7 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
                     placeholder="г. Энгельс, ул. Маршала Василевского, д. 27, кв. 1"
                     name="address"
                     autoComplete="off"
+                    value="г. Энгельс, ул. Маршала Василевского, д. 27, кв. 1"
                   />
                 </Col>
               </Row>
@@ -108,6 +126,7 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
                         type="text"
                         placeholder="Иванов И.И."
                         name="applicant"
+                        value="Иванов И.И."
                       />
                     </Col>
                     <Col>
@@ -116,6 +135,7 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
                         type="tel"
                         placeholder="+79123456789"
                         name="phone_number"
+                        value="+79123456789"
                       />
                     </Col>
                   </Row>
@@ -124,7 +144,7 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
               <Row className="mb-4">
                 <Col>
                   <Form.Label
-                    htmlFor="qweasd"
+                    htmlFor="reason"
                     style={{
                       fontWeight: 600,
                       fontSize: "20px",
@@ -132,28 +152,26 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
                   >
                     Характер выезда
                   </Form.Label>
-                  <Form.Select
-                    name="haracter_vyezda"
-                    defaultValue={"other"}
-                    id="haracter_vyezda"
-                  >
+                  <Form.Select name="reason" defaultValue={"other"} id="reason">
                     <option value={""}>Пожар</option>
                     <option value={""}>ЧС</option>
                     <option value={""}>Заправка ГСМ</option>
                     <option value={""}>Горение сухой травы, мусора</option>
                     <option value={"other"}>Прочее</option>
                   </Form.Select>
+                  {/* todo: render only if other selected above */}
                   <Form.Control
-                    id="haracter_vyezda_text"
+                    id="reason_text"
                     type="text"
                     placeholder="Ввод прочего"
-                    name="haracter_vyezda_text"
+                    name="reason_text"
+                    value="Ввод прочего"
                   />
                 </Col>
               </Row>
               <Form.Group as={Row} className="mb-3">
                 <Form.Label
-                  htmlFor="address"
+                  htmlFor="place_description"
                   column
                   md={12}
                   style={{
@@ -167,31 +185,33 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
                   <Row>
                     <Col md={6}>
                       <Form.Control
-                        id="pogiblo"
+                        id="place_description"
                         type="text"
-                        name="fake_name_2"
+                        name="place_description"
                         placeholder="Квартира, домашние вещи"
+                        value="Квартира, домашние вещи"
                       />
                     </Col>
                     <Col md={6}>
                       <div className="d-flex">
                         <Col md={4}>
                           <Form.Control
-                            id="pogiblo"
+                            id="size"
                             className="text-center"
                             type="text"
-                            name="fake_name_2"
+                            name="size"
                             placeholder="15"
+                            value="15"
                           />
                         </Col>
                         <Col md={4}>
                           <Form.Select
-                            name="haracter_vyezda"
+                            name="size_units"
                             defaultValue={"m2"}
-                            id="haracter_vyezda"
+                            id="size_units"
                           >
-                            <option value={"m2"}>м&sup2;</option>
-                            <option value={"ha2"}>га&sup3;</option>
+                            <option value={SizeUnits.METER}>м&sup2;</option>
+                            <option value={SizeUnits.HECTARE}>га&sup3;</option>
                           </Form.Select>
                         </Col>
                       </div>
@@ -202,7 +222,7 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
               <Row className="mb-4">
                 <Col>
                   <Form.Label
-                    htmlFor="qweasd"
+                    htmlFor="difficulty_level"
                     style={{
                       fontWeight: 600,
                       fontSize: "20px",
@@ -211,21 +231,21 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
                     Номер вызова
                   </Form.Label>
                   <Form.Select
-                    name="haracter_vyezda"
-                    defaultValue={"1bis"}
-                    id="haracter_vyezda"
+                    name="difficulty_level"
+                    defaultValue={DifficultyLevel.ONE_BIS}
+                    id="difficulty_level"
                   >
-                    <option value={"1"}>1</option>
-                    <option value={"1bis"}>1-БИС</option>
-                    <option value={"gsm"}>2</option>
-                    <option value={"trava"}>3</option>
+                    <option value={DifficultyLevel.ONE}>1</option>
+                    <option value={DifficultyLevel.ONE_BIS}>1-БИС</option>
+                    <option value={DifficultyLevel.TWO}>2</option>
+                    <option value={DifficultyLevel.THREE}>3</option>
                   </Form.Select>
                 </Col>
               </Row>
               <Row className="mb-4">
                 <Col>
                   <Form.Label
-                    htmlFor="address"
+                    htmlFor="squad_numbers"
                     style={{
                       fontWeight: 600,
                       fontSize: "20px",
@@ -234,11 +254,12 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
                     Привлекались
                   </Form.Label>
                   <Form.Control
-                    id="address"
+                    id="squad_numbers"
                     type="text"
                     placeholder="271, 272, 975, 270, 141"
-                    name="address"
+                    name="squad_numbers"
                     autoComplete="off"
+                    value="271, 272, 975, 270, 141"
                   />
                 </Col>
               </Row>
@@ -248,7 +269,7 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
                 <Form.Label
                   column
                   md={9}
-                  htmlFor="qwer_1"
+                  htmlFor="time_of_call_time"
                   style={{
                     color: "rgba(38, 45, 61, 1)",
                     fontWeight: "500",
@@ -258,11 +279,12 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
                 </Form.Label>
                 <Col md={3}>
                   <Form.Control
-                    id="qwer_1"
+                    id="time_of_call_time"
                     className="text-center"
                     type="text"
                     placeholder="10:00"
-                    name="qwer_1"
+                    name="time_of_call_time"
+                    value="10:00"
                     style={{
                       fontSize: "15px",
                     }}
@@ -273,7 +295,7 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
                 <Form.Label
                   column
                   md={9}
-                  htmlFor="qwer_2"
+                  htmlFor="time_of_call_date"
                   style={{
                     color: "rgba(38, 45, 61, 1)",
                     fontWeight: "500",
@@ -283,11 +305,12 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
                 </Form.Label>
                 <Col md={3}>
                   <Form.Control
-                    id="qwer_2"
+                    id="time_of_call_date"
                     className="text-center"
                     type="text"
                     placeholder="04.09.2022"
-                    name="fake_name_1"
+                    name="time_of_call_date"
+                    value="04.09.2022"
                     style={{
                       fontSize: "15px",
                     }}
