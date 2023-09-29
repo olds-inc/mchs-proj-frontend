@@ -2,13 +2,21 @@ import axios from "axios";
 
 import { API_BASE_URL } from "../constants";
 
+import { SizeUnits, DifficultyLevel } from "../types";
+
 interface CardBase {
   id?: number;
   address: string;
-  comment: string;
   applicant: string;
   phone_number: string;
-  copies: number;
+  status: number; // todo: proper enumeration
+  reason: string;
+  place_description: string;
+  size: number;
+  size_units: SizeUnits;
+  time_of_call: number; // timestamp
+  difficulty_level: DifficultyLevel;
+  squad_numbers: number[];
 }
 
 interface CardToCreate extends CardBase {}
