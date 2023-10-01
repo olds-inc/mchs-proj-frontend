@@ -18,7 +18,7 @@ import { ErrorBoundaryContext } from "./contexts/ErrorBoundary";
 import AlertWithError from "./components/AlertWithError";
 import AppNavbar from "./components/AppNavbar";
 
-export default function App() {
+export default function Root() {
   const [errorMessage, setErrorMessage] = useState<ErrorMessage | null>(null);
   const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null);
 

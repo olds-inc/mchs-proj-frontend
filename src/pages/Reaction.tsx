@@ -1,6 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect, useReducer } from "react";
 import { Container, Row, Col, Button, Modal } from "react-bootstrap";
 import { PlusLg } from "react-bootstrap-icons";
+
+import { CurrentUser } from "../types";
+
+import { CurrentUserContext } from "../contexts/CurrentUser";
+
+import CardService from "../services/card";
+
+import cardsReducer, { CardsReducerActionType } from "../reducers/cards";
 
 import TablichkaEbanaya from "../components/TablichkaEbanaya";
 import CustomModalDialog from "../components/CustomModalDialog";
@@ -8,6 +16,9 @@ import CreateCardForm from "../components/CreateCardForm";
 
 export default function ReactionPage() {
   const [modalShown, setModalShown] = useState<boolean>(false);
+  const [cards, dispatch] = useReducer(cardsReducer, []);
+
+  const currentUser = useContext<CurrentUser | null>(CurrentUserContext);
 
   function handleModalClose() {
     setModalShown(false);
@@ -17,6 +28,19 @@ export default function ReactionPage() {
     setModalShown(true);
   }
 
+  useEffect(() => {
+    if (cards.length === 0 && currentUser) {
+      const cardService = new CardService(currentUser.tokens.accessToken);
+
+      cardService.getCards().then((cards) => {
+        dispatch({
+          type: CardsReducerActionType.LOADED,
+          payload: cards,
+        });
+      });
+    }
+  }, [cards]);
+
   return (
     <>
       <Container className="mt-5" fluid={true}>
@@ -24,7 +48,7 @@ export default function ReactionPage() {
           <Col>
             <Row>
               <Col>
-                <TablichkaEbanaya />
+                <TablichkaEbanaya cards={cards} />
               </Col>
             </Row>
             <Row>

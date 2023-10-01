@@ -2,7 +2,11 @@ import React from "react";
 import { Table } from "react-bootstrap";
 import { CircleFill } from "react-bootstrap-icons";
 
-export default function TablichkaEbanaya() {
+import { CardModel } from "../types";
+
+import { getDifficultyLevelRu } from "../utils";
+
+export default function TablichkaEbanaya({ cards }: { cards: CardModel[] }) {
   return (
     <Table className="text-center">
       <thead>
@@ -20,34 +24,24 @@ export default function TablichkaEbanaya() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>#1</td>
-          <td>
-            <CircleFill size={15} className="text-danger" />
-          </td>
-          <td>04.09.2022</td>
-          <td>20:05</td>
-          <td>г. Энгельс, ул. Студенческая, 19</td>
-          <td>Пожар</td>
-          <td>1</td>
-          <td>1</td>
-          <td>0</td>
-          <td>0</td>
-        </tr>
-        <tr>
-          <td>#2</td>
-          <td>
-            <CircleFill size={15} className="text-success" />
-          </td>
-          <td>04.09.2022</td>
-          <td>20:05</td>
-          <td>г. Энгельс, ул. Студенческая, 19</td>
-          <td>Пожар</td>
-          <td>1</td>
-          <td>1</td>
-          <td>0</td>
-          <td>0</td>
-        </tr>
+        {cards.map((card) => {
+          return (
+            <tr key={card.id}>
+              <td>{card.id}</td>
+              <td>
+                <CircleFill size={15} className="text-danger" />
+              </td>
+              <td>{card.callReceiveDatetime.date}</td>
+              <td>{card.callReceiveDatetime.time}</td>
+              <td>{card.address}</td>
+              <td>{card.reason}</td>
+              <td>{getDifficultyLevelRu(card.difficultyLevel)}</td>
+              <td>{card.saved}</td>
+              <td>{card.damaged}</td>
+              <td>{card.rip}</td>
+            </tr>
+          );
+        })}
       </tbody>
     </Table>
   );
