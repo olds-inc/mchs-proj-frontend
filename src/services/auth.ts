@@ -23,14 +23,14 @@ export default class AuthService {
         email: user.email,
         password: user.password,
       })
-      .then((response) =>
-        Promise.resolve({
+      .then((response) => {
+        return Promise.resolve({
           email: user.email,
           tokens: {
-            accessToken: response.data.accessToken,
-            refreshToken: response.data.refreshToken,
+            accessToken: response.data.access_token,
+            refreshToken: response.data.refresh_token,
           },
-        })
-      );
+        });
+      });
   }
 }

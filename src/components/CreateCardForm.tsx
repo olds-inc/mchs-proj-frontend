@@ -35,30 +35,31 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
 
     const cardService = new CardService(currentUser?.tokens?.accessToken);
 
-    const realReason =
-      form["reason"].value === "other" ? form["reason_text"].value : "ne other";
-
-    const timeOfCallTime = form["time_of_call_time"].value;
-    const timeOfCallDate = form["time_of_call_date"].value;
-
     cardService
       .addCard({
+        status: 0, // todo: remove when api changed
+
         address: form["address"].value,
-        applicant: form["applicant"].value,
-        phone_number: form["phone_number"].value,
-        status: -1,
-        reason: realReason,
-        place_description: form["place_description"].value,
-        size: form["size"].value,
-        size_units: form["size_units"].value,
-        time_of_call: Date.parse(`${timeOfCallDate} ${timeOfCallTime}`),
-        difficulty_level: form["difficulty_level"].value,
-        squad_numbers: form["squad_numbers"].value
-          .split(", ")
-          .map((str: string) => parseInt(str)),
+        callReceiveDatetime: {
+          time: form["time_of_call_time"].value,
+          date: form["time_of_call_date"].value,
+        },
+        difficultyLevel: form["difficulty_level"].value,
+        applicant: {
+          name: form["applicant"].value,
+          phoneNumber: form["phone_number"].value,
+        },
+        place: {
+          description: form["place_description"].value,
+          size: form["size"].value,
+          sizeUnits: form["size_units"].value,
+        },
+        reason: form["reason"].value,
+        squads: form["squad_numbers"].value.split(", "),
       })
       .then(() => {
-        setCardSuccessfullyCreated(true);
+        // setCardSuccessfullyCreated(true);
+        console.log("zaebumba");
       })
       .catch((error) => {
         setErrorMessage(extractErrorPayload(error));
@@ -102,7 +103,7 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
                     placeholder="г. Энгельс, ул. Маршала Василевского, д. 27, кв. 1"
                     name="address"
                     autoComplete="off"
-                    value="г. Энгельс, ул. Маршала Василевского, д. 27, кв. 1"
+                    required={true}
                   />
                 </Col>
               </Row>
@@ -126,7 +127,7 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
                         type="text"
                         placeholder="Иванов И.И."
                         name="applicant"
-                        value="Иванов И.И."
+                        required={true}
                       />
                     </Col>
                     <Col>
@@ -135,7 +136,7 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
                         type="tel"
                         placeholder="+79123456789"
                         name="phone_number"
-                        value="+79123456789"
+                        required={true}
                       />
                     </Col>
                   </Row>
@@ -153,10 +154,12 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
                     Характер выезда
                   </Form.Label>
                   <Form.Select name="reason" defaultValue={"other"} id="reason">
-                    <option value={""}>Пожар</option>
-                    <option value={""}>ЧС</option>
-                    <option value={""}>Заправка ГСМ</option>
-                    <option value={""}>Горение сухой травы, мусора</option>
+                    <option value={"Пожар"}>Пожар</option>
+                    <option value={"ЧС"}>ЧС</option>
+                    <option value={"Заправка ГСМ"}>Заправка ГСМ</option>
+                    <option value={"Горение сухой травы, мусора"}>
+                      Горение сухой травы, мусора
+                    </option>
                     <option value={"other"}>Прочее</option>
                   </Form.Select>
                   {/* todo: render only if other selected above */}
@@ -165,7 +168,6 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
                     type="text"
                     placeholder="Ввод прочего"
                     name="reason_text"
-                    value="Ввод прочего"
                   />
                 </Col>
               </Row>
@@ -189,7 +191,7 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
                         type="text"
                         name="place_description"
                         placeholder="Квартира, домашние вещи"
-                        value="Квартира, домашние вещи"
+                        required={true}
                       />
                     </Col>
                     <Col md={6}>
@@ -201,7 +203,7 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
                             type="text"
                             name="size"
                             placeholder="15"
-                            value="15"
+                            required={true}
                           />
                         </Col>
                         <Col md={4}>
@@ -209,6 +211,7 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
                             name="size_units"
                             defaultValue={"m2"}
                             id="size_units"
+                            required={true}
                           >
                             <option value={SizeUnits.METER}>м&sup2;</option>
                             <option value={SizeUnits.HECTARE}>га&sup3;</option>
@@ -234,6 +237,7 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
                     name="difficulty_level"
                     defaultValue={DifficultyLevel.ONE_BIS}
                     id="difficulty_level"
+                    required={true}
                   >
                     <option value={DifficultyLevel.ONE}>1</option>
                     <option value={DifficultyLevel.ONE_BIS}>1-БИС</option>
@@ -259,7 +263,6 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
                     placeholder="271, 272, 975, 270, 141"
                     name="squad_numbers"
                     autoComplete="off"
-                    value="271, 272, 975, 270, 141"
                   />
                 </Col>
               </Row>
@@ -284,7 +287,6 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
                     type="text"
                     placeholder="10:00"
                     name="time_of_call_time"
-                    value="10:00"
                     style={{
                       fontSize: "15px",
                     }}
@@ -310,7 +312,6 @@ export default function CreateCardForm({ onClose }: { onClose: () => void }) {
                     type="text"
                     placeholder="04.09.2022"
                     name="time_of_call_date"
-                    value="04.09.2022"
                     style={{
                       fontSize: "15px",
                     }}
