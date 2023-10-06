@@ -13,24 +13,38 @@ interface UserToLogin extends UserBase {
 }
 
 export default class AuthService {
-  static async registerUser(user: UserToRegister): Promise<void> {
-    throw Error("not implemented");
-  }
+  /* fake CRUD goes here */
 
-  static async loginUser(user: UserToLogin): Promise<CurrentUser> {
-    return axios
-      .post(`${API_BASE_URL}/auth/users/tokens`, {
-        email: user.email,
-        password: user.password,
-      })
-      .then((response) => {
-        return Promise.resolve({
+  async loginUser(user: UserToLogin): Promise<CurrentUser> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve({
           email: user.email,
           tokens: {
-            accessToken: response.data.access_token,
-            refreshToken: response.data.refresh_token,
+            accessToken: "user.access.token",
+            refreshToken: "user.refresh.token",
           },
         });
-      });
+      }, 1000);
+    });
   }
+
+  /* real CRUD goes here */
+
+  // static async loginUser(user: UserToLogin): Promise<CurrentUser> {
+  //   return axios
+  //     .post(`${API_BASE_URL}/auth/users/tokens`, {
+  //       email: user.email,
+  //       password: user.password,
+  //     })
+  //     .then((response) => {
+  //       return Promise.resolve({
+  //         email: user.email,
+  //         tokens: {
+  //           accessToken: response.data.access_token,
+  //           refreshToken: response.data.refresh_token,
+  //         },
+  //       });
+  //     });
+  // }
 }

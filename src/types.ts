@@ -28,7 +28,7 @@ export interface ErrorMessage {
 когда у карточки заполнены все поля она приобретает статус FINISHED
 */
 export enum CardStatus {
-  IN_PROGRESS = 0,
+  NEW = 0,
   FINISHED = 1,
 }
 

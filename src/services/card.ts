@@ -2,10 +2,14 @@ import axios, { AxiosResponse } from "axios";
 
 import { API_BASE_URL } from "../constants";
 
-import { CardModel, DifficultyLevel, SizeUnits } from "../types";
+import { CardModel, CardStatus, DifficultyLevel, SizeUnits } from "../types";
 import { parseTimestamp, formatDateAndTimeAsTimestamp } from "../utils";
 
-interface CardResponseObject {
+// todo: по идее CardResponseObject и CardRequestObject должны схлопнуться в 1 тип но текущий бек к этому не готов
+
+interface CardBackendObject {}
+
+interface CardResponseObject extends CardBackendObject {
   card_id: number;
   status: number;
   time_of_call: string;
@@ -17,7 +21,7 @@ interface CardResponseObject {
   saved: number;
 }
 
-interface CardRequestObject {
+interface CardRequestObject extends CardBackendObject {
   status: number;
   time_of_call: string;
   address: string;
@@ -46,38 +50,152 @@ interface GetSingleCardResponse extends AxiosResponse {
   };
 }
 
+let lastId = 1;
+let cardsStore: CardModel[] = [];
+
+export const FAKE_CARD_TO_CREATE = {
+  address: "г. Энгельс, ул Маршала Василевского, д.27, кв. 1",
+  callReceiveDatetime: {
+    time: "10:00",
+    date: "04.09.2022",
+  },
+  status: Math.random() > 0.5 ? CardStatus.NEW : CardStatus.FINISHED,
+  difficultyLevel: DifficultyLevel.ONE_BIS,
+  applicant: {
+    name: "Иванов И.И.",
+    phoneNumber: "+79123456789",
+  },
+  place: {
+    description: "Квартира, домашние вещи",
+    size: 15,
+    sizeUnits: SizeUnits.METER,
+  },
+  reason: "Пожар",
+  squads: [271, 272, 975, 270, 141],
+  rip: 0,
+  damaged: 0,
+  saved: 0,
+};
+
 export default class CardService {
   accessToken: string;
 
   constructor(accessToken: string) {
     this.accessToken = accessToken;
-  }
 
-  async addCard(card: CardModel): Promise<number> {
-    return axios.post(
-      `${API_BASE_URL}/card/`,
-      {
-        ...transformCardModelToCreateRequest(card),
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${this.accessToken}`,
-        },
+    if (cardsStore.length == 0) {
+      for (let i = 0; i < 30; i++) {
+        const newCard = { ...FAKE_CARD_TO_CREATE, id: lastId++ };
+        cardsStore.push(newCard);
       }
-    );
+    }
   }
 
-  async getCards(): Promise<CardModel[]> {
-    return axios
-      .get(`${API_BASE_URL}/card/`, {
-        headers: {
-          Authorization: `Bearer ${this.accessToken}`,
-        },
-      })
-      .then((response: GetCardsListResponse) => {
-        return Promise.resolve(transformGetCardsListResponse(response));
-      });
+  /* fake CRUD goes here */
+
+  async createCard(cardData: CardModel): Promise<number> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const newCard = { ...cardData, id: lastId++ };
+
+        cardsStore = [...cardsStore, newCard];
+
+        resolve(newCard.id);
+      }, 500);
+    });
   }
+
+  async readCard(cardId: number): Promise<CardModel> {
+    return new Promise((resolve, reject) => {
+      const card = cardsStore.find((card) => {
+        card.id == cardId;
+      });
+
+      setTimeout(() => {
+        resolve(card);
+      }, 1000);
+    });
+  }
+
+  async updateCard(cardData: CardModel): Promise<number> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        cardsStore = cardsStore.map((card) => {
+          if (card.id === cardData.id) {
+            return cardData;
+          }
+
+          return card;
+        });
+
+        resolve(cardData.id);
+      }, 1000);
+    });
+  }
+
+  async deleteCard(cardId: number): Promise<number> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        cardsStore = cardsStore.filter((card) => {
+          card.id !== cardId;
+        });
+
+        resolve(cardId);
+      }, 1000);
+    });
+  }
+
+  async readAllCards(
+    offset: number = 0,
+    limit: number = 10
+  ): Promise<{ cards: CardModel[]; total: number }> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        // shallow copy is bad
+        // but who cares
+        const response = {
+          cards: cardsStore.slice(offset, offset + limit),
+          total: cardsStore.length,
+        };
+
+        console.log(response);
+
+        resolve(response);
+      }, 400);
+    });
+  }
+
+  /* real CRUD goes here */
+
+  // async addCard(card: CardModel): Promise<number> {
+  //   return axios
+  //     .post(
+  //       `${API_BASE_URL}/card/`,
+  //       {
+  //         ...transformCardModelToCreateRequest(card),
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${this.accessToken}`,
+  //         },
+  //       }
+  //     )
+  //     .then((response: GetSingleCardResponse) => {
+  //       return Promise.resolve(response.data.card_id);
+  //     });
+  // }
+
+  // async getCards(): Promise<CardModel[]> {
+  //   return axios
+  //     .get(`${API_BASE_URL}/card/`, {
+  //       headers: {
+  //         Authorization: `Bearer ${this.accessToken}`,
+  //       },
+  //     })
+  //     .then((response: GetCardsListResponse) => {
+  //       return Promise.resolve(transformGetCardsListResponse(response));
+  //     });
+  // }
 }
 
 function transformGetCardsListResponse(

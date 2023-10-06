@@ -26,10 +26,11 @@ export default function Root() {
   // но пока на этой похуй т.к. в стейт кладется результат последнгео запроса
   useEffect(() => {
     if (currentUser === null) {
-      AuthService.loginUser({
-        email: FAKE_USER_EMAIL,
-        password: FAKE_USER_PASS,
-      })
+      new AuthService()
+        .loginUser({
+          email: FAKE_USER_EMAIL,
+          password: FAKE_USER_PASS,
+        })
         .then((user) => {
           setCurrentUser({
             email: user.email,

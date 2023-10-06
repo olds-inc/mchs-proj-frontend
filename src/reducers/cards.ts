@@ -1,19 +1,36 @@
 import { CardModel } from "../types";
 
 export enum CardsReducerActionType {
+  ADD,
   LOADED,
 }
 
+interface CardsReducesState {
+  cards: CardModel[];
+  total?: number;
+}
+
 export default function cardsReducer(
-  cards: CardModel[],
-  action: { type: CardsReducerActionType; payload: any }
+  state: CardsReducesState,
+  action: { type: CardsReducerActionType; state: CardsReducesState }
 ) {
   switch (action.type) {
+    case CardsReducerActionType.ADD: {
+      return {
+        ...state,
+        ...action.state.cards,
+      };
+    }
     case CardsReducerActionType.LOADED: {
-      return [...action.payload];
+      return {
+        ...state,
+        ...action.state,
+      };
     }
     default: {
-      return [...cards];
+      return {
+        ...state,
+      };
     }
   }
 }
