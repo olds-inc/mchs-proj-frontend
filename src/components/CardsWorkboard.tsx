@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
+import { Row, Col } from "react-bootstrap";
 
-import { Row, Col, Spinner } from "react-bootstrap";
+import { CardModel } from "../types";
 
 import CardService from "../services/card";
 
-import CardsTable from "./CardsTable";
+import SearchableCardsTable from "./SearchableCardsTable";
 import CardsTablePagination from "./CardsTablePagination";
-import { CardModel } from "../types";
 
-const CARDS_PER_PAGE = 5;
+const CARDS_PER_PAGE = 7;
 
 export default function CardsWorkboard() {
   const [cardsLoading, setCardsLoading] = useState<boolean>(true);
   const [currentPageIndex, setCurrentPageIndex] = useState<number>(0);
+  const [searchActive, setSearchActive] = useState<boolean>(false);
 
   const [cards, setCards] = useState<CardModel[]>([]);
   const [totalPages, setTotalPages] = useState<number>(0);
@@ -66,6 +67,10 @@ export default function CardsWorkboard() {
       });
   }
 
+  function handleSearchIconClick(event: React.SyntheticEvent) {
+    setSearchActive(!searchActive);
+  }
+
   useEffect(() => {
     if (cardsLoading) {
       new CardService("")
@@ -80,24 +85,22 @@ export default function CardsWorkboard() {
     }
   }, [cards, cardsLoading]);
 
-  return cardsLoading ? (
-    <Row>
-      <Col>
-        <Spinner animation="border" role="status" variant="info">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-      </Col>
-    </Row>
-  ) : (
+  return (
     <>
       <Row>
         <Col>
-          <CardsTable cards={cards} />
+          <SearchableCardsTable
+            cards={cards}
+            cardsLoading={cardsLoading}
+            searchActive={searchActive}
+            onSearchIconClick={handleSearchIconClick}
+          />
         </Col>
       </Row>
       <Row className={"mb-4"}>
         <Col className="d-flex justify-content-end align-items-center">
           <CardsTablePagination
+            cardsLoading={cardsLoading}
             activePageIndex={currentPageIndex}
             totalPages={totalPages}
             onPreviousPageClick={handlePreviousPageButtonClick}

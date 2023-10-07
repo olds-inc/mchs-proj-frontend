@@ -36,12 +36,14 @@ const styles = createUseStyles({
 });
 
 export default function CardsTablePagination({
+  cardsLoading,
   activePageIndex,
   totalPages,
   onPageClick,
   onPreviousPageClick,
   onNextPageClick,
 }: {
+  cardsLoading: boolean;
   activePageIndex: number;
   totalPages: number;
   onPageClick: (event: React.SyntheticEvent, pageIndex: number) => void;
@@ -50,7 +52,9 @@ export default function CardsTablePagination({
 }) {
   const classes = styles();
 
-  return (
+  return cardsLoading ? (
+    <></>
+  ) : (
     <ul className={classes.list}>
       <li className={classes.listItem}>
         <button
@@ -59,7 +63,7 @@ export default function CardsTablePagination({
           onClick={onPreviousPageClick}
           disabled={activePageIndex === 0}
         >
-          Предыдущая:
+          Предыдущая
         </button>
       </li>
       {[...Array(totalPages)].map((_, index) => {
@@ -82,7 +86,7 @@ export default function CardsTablePagination({
           onClick={onNextPageClick}
           disabled={activePageIndex === totalPages - 1}
         >
-          Следующая:
+          Следующая
         </button>
       </li>
     </ul>

@@ -16,6 +16,10 @@ const navbarLinkButtonStyles = createUseStyles({
     "&.active": {
       backgroundColor: "#F2A45F",
     },
+
+    "&:hover": {
+      backgroundColor: "#F2A45F",
+    },
   },
   icon: {
     marginRight: "10px",

@@ -161,7 +161,7 @@ export default class CardService {
         console.log(response);
 
         resolve(response);
-      }, 400);
+      }, 600);
     });
   }
 
